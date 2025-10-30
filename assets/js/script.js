@@ -6,10 +6,8 @@ Version      : 1.0
 * ----------------------------------------------------------------------------------------
 */
 
-
 (function($) {
     "use strict";
-
 
     /*
      * ----------------------------------------------------------------------------------------
@@ -36,7 +34,7 @@ Version      : 1.0
                 slidesPerView: 1,
             },
             '768': {
-                slidesPerView: 1,
+                slidesToShow: 1,
             },
             '576': {
                 slidesPerView: 1,
@@ -49,7 +47,7 @@ Version      : 1.0
 
     /*
      * ----------------------------------------------------------------------------------------
-     *  EXTRA JS
+     *  EXTRA JS - Counter
      * ----------------------------------------------------------------------------------------
      */
     if ($('.counter-text-wrap').length) {
@@ -84,7 +82,7 @@ Version      : 1.0
 
     /*
      * ----------------------------------------------------------------------------------------
-     *  EXTRA JS
+     *  EXTRA JS - Mobile Menu
      * ----------------------------------------------------------------------------------------
      */
 
@@ -112,8 +110,6 @@ Version      : 1.0
         $(".sidebar__area").removeClass("sidebar-opened");
         $(".body-overlay").removeClass("opened");
     });
-
-
 
     /*
      * ----------------------------------------------------------------------------------------
@@ -146,7 +142,6 @@ Version      : 1.0
             }
         });
 
-
         $('.popup-youtube, .popup-vimeo, .popup-gmaps, .popup-video').magnificPopup({
             disableOn: 700,
             type: 'iframe',
@@ -160,7 +155,6 @@ Version      : 1.0
     };
     // Call the functions 
     magnifPopup();
-
 
     /*
      * ----------------------------------------------------------------------------------------
@@ -182,7 +176,6 @@ Version      : 1.0
         progressPath.style.strokeDashoffset = progress;
     }
     updateProgress();
-
 
     $(window).scroll(updateProgress);
     var offset = 150;
@@ -233,9 +226,6 @@ Version      : 1.0
         });
     }
 
-
-
-
     /*
      * ----------------------------------------------------------------------------------------
      *  SMOTH SCROOL JS
@@ -261,7 +251,6 @@ Version      : 1.0
      * ----------------------------------------------------------------------------------------
      */
     const lenis = new Lenis()
-
 
     lenis.on('scroll', ScrollTrigger.update)
 
@@ -294,8 +283,6 @@ Version      : 1.0
         });
     }
 
-
-
     // ## Project Filter
     $(".project-filter li").on('click', function() {
         $(".project-filter li").removeClass("current");
@@ -314,11 +301,8 @@ Version      : 1.0
 
     });
 
-
-
     // ## Nice Select
     $('select').niceSelect();
-
 
     // ## WOW Animation
     if ($('.wow').length) {
@@ -332,49 +316,80 @@ Version      : 1.0
         wow.init();
     }
 
-
-
-
     /*
      * ----------------------------------------------------------------------------------------
-     *  AJAX CONTACT JS
+     *  AJAX CONTACT JS (Formspree Integration)
      * ----------------------------------------------------------------------------------------
      */
 
-    // Function for email address validation
-    function isValidEmail(emailAddress) {
-        var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-
-        return pattern.test(emailAddress);
-
-    }
-    $("#contactForm").on('submit', function(e) {
-        e.preventDefault();
-        var data = {
-            name: $("#name").val(),
-            email: $("#email").val(),
-            subject: $("#subject").val(),
-            message: $("#message").val()
-        };
-
-        if (isValidEmail(data['email']) && (data['message'].length > 1) && (data['name'].length > 1) && (data['subject'].length > 1)) {
-            $.ajax({
-                type: "POST",
-                url: "sendmail.php",
-                data: data,
-                success: function() {
-                    $('#contactForm .input-success').delay(500).fadeIn(1000);
-                    $('#contactForm .input-error').fadeOut(500);
-                }
+    // Formspree AJAX submission (adapted to your form elements)
+    document.addEventListener('DOMContentLoaded', function() {
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const form = this;
+                const formData = new FormData(form);
+                const submitBtn = form.querySelector('.theme-btn[type="submit"]');
+                const successMsg = form.querySelector('.input-success');
+                const errorMsg = form.querySelector('.input-error');
+                const msgSubmit = document.getElementById('msgSubmit');
+                
+                // Disable submit button
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = 'Sending... <i class="ri-loader-2-line"></i>';
+                
+                // Hide previous messages
+                successMsg.style.display = 'none';
+                errorMsg.style.display = 'none';
+                msgSubmit.style.display = 'none';
+                
+                // Send AJAX request to Formspree
+                fetch('https://formspree.io/f/mvgwdkoj', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    // Formspree success: 200 OK (no body)
+                    if (response.ok) {
+                        return { success: true, message: 'We have received your mail, We will get back to you soon!' };
+                    }
+                    // Error: Parse JSON for message
+                    return response.json().then(data => {
+                        throw new Error(data.message || 'Sorry, Message could not send! Please try again.');
+                    });
+                })
+                .then(data => {
+                    // Show success message
+                    successMsg.style.display = 'block';
+                    successMsg.textContent = data.message;
+                    form.reset(); // Clear form
+                    
+                    // Re-enable submit button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Send Message <i class="ri-mail-line"></i>';
+                    
+                    // Auto-hide message after 5 seconds
+                    setTimeout(() => {
+                        successMsg.style.display = 'none';
+                    }, 5000);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    errorMsg.style.display = 'block';
+                    errorMsg.textContent = error.message || 'Sorry, Message could not send! Please try again.';
+                    
+                    // Re-enable submit button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Send Message <i class="ri-mail-line"></i>';
+                });
             });
-        } else {
-            $('#contactForm .input-error').delay(500).fadeIn(1000);
-            $('#contactForm .input-success').fadeOut(500);
         }
-
-        return false;
     });
-
 
     /* ==========================================================================
        When document is scroll, do
@@ -402,14 +417,11 @@ Version      : 1.0
 
     });
 
-
-
     /* ==========================================================================
        When document is loaded, do
        ========================================================================== */
 
     $(window).on('load', function() {
-
 
         const svg = document.getElementById("preloaderSvg");
         const tl = gsap.timeline();
@@ -437,7 +449,6 @@ Version      : 1.0
             zIndex: -1,
             display: "none",
         });
-
 
     });
 
@@ -484,8 +495,5 @@ Version      : 1.0
             });
         });
     });
-
-
-
 
 })(jQuery); // End jQuery
