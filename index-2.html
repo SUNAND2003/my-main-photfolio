@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <!-- Mirrored from theme.nanoit.biz/tf-nino-demo/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Aug 2025 05:40:51 GMT -->
 <head>
     <!-- META -->
@@ -99,13 +98,15 @@
                                 <nav id="mobile-menu">
                                     <ul>
                                         <li><a href="index-2.html" class="linkstyle">Home</a></li>
-                                        <li><a href="" class="linkstyle">about</a></li>
-                                        <li><a href="" class="linkstyle">services</a></li>
-                                        <li class="has-dropdown"><a href="" class="linkstyle">projects</a>
-                                        
-                        
-                                       
-                                        <li><a href="contact.html" class="linkstyle">Contact</a></li>
+                                        <li><a href="#about" class="linkstyle">About</a></li>
+                                        <li><a href="#services" class="linkstyle">Services</a></li>
+                                        <li class="has-dropdown"><a href="#projects" class="linkstyle">Projects</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="#">Project 1</a></li>
+                                                <li><a href="#">Project 2</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#contact" class="linkstyle">Contact</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -232,7 +233,7 @@
                         <i class="ri-arrow-right-up-line"></i>
                         <h5>02</h5>
                         <h4>WEB Design</h4>
-                        <p>      Creating beautiful, responsive, and user-friendly website designs that represent your brand perfectly.</p>
+                        <p>Creating beautiful, responsive, and user-friendly website designs that represent your brand perfectly.</p>
                     </div>
                 </div>
                 <!-- / END SINGLE SERVICE DESIGN AREA -->
@@ -252,7 +253,7 @@
                         <i class="ri-arrow-right-up-line"></i>
                         <h5>04</h5>
                         <h4>MERN Stack Development</h4>
-                        <p>Developing full-stack web applications using MongoDB, Express.js, React.js, and Node.js for modern, dynamic, and scalable solutions</p>.</p>
+                        <p>Developing full-stack web applications using MongoDB, Express.js, React.js, and Node.js for modern, dynamic, and scalable solutions.</p>
                     </div>
                 </div>
                 <!-- / END SINGLE SERVICE DESIGN AREA -->
@@ -261,8 +262,7 @@
     </section>
     <!-- / END SERVICE DESIGN AREA -->
     
-               
-
+        
    
         <!-- START CONTACT DESIGN AREA -->
     <section id="contact" class="contact-area">
@@ -283,7 +283,7 @@
                                 <i class="ri-map-pin-line"></i>
                             </span>
                             <h2>Address:</h2>
-                            <p>Calicut,Kerala,India</p>
+                            <p>Calicut, Kerala, India</p>
                         </div>
                         <!-- / END CONTACT SINGLEDESIGN AREA -->
                         <!-- START CONTACT SINGLEDESIGN AREA -->
@@ -291,7 +291,7 @@
                             <span class="circle-btn">
                                 <i class="ri-headphone-line"></i>
                             </span>
-                            <h2>contact number:</h2>
+                            <h2>Contact Number:</h2>
                             <p>+91-7510399453</p>
                         </div>
                         <!-- / END CONTACT SINGLEDESIGN AREA -->
@@ -300,8 +300,8 @@
                             <span class="circle-btn">
                                 <i class="ri-mail-line"></i>
                             </span>
-                            <h2>Email us:</h2>
-                            <p>sunandt2003@gmai.com</p>
+                            <h2>Email Us:</h2>
+                            <p>sunandt2003@gmail.com</p>
                         </div>
                         <!-- / END CONTACT SINGLEDESIGN AREA -->
                         <!-- START CONTACT SINGLEDESIGN AREA -->
@@ -311,8 +311,8 @@
                             <ul>
                                 <li><a href="#"><i class="ri-facebook-circle-fill"></i></a></li>
                                 <li><a href="#"><i class="ri-twitter-x-line"></i></a></li>
-                                <li><a href="#"><i class="ri-linkedin-fill"></i></a></li>
-                                <li><a href="#"><i class="ri-github-line"></i></a></li>
+                                <li><a href="https://www.linkedin.com/in/sunand2003/ "><i class="ri-linkedin-fill"></i></a></li>
+                                <li><a href="https://github.com/SUNAND2003"><i class="ri-github-line"></i></a></li>
                             </ul>
                         </div>
                         </div>
@@ -327,7 +327,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="name">Full Name</label>
-                                        <input type="text" id="name" class="form-control" value="" placeholder="Sunand T" required="" data-error="Please enter your Name" />
+                                        <input type="text" name="name" id="name" class="form-control" value="" placeholder="Enter your name" required="" data-error="Please enter your Name" />
                                         <label for="name" class="for-icon"><i class="far fa-user"></i></label>
                                         <div class="help-block with-errors"></div>
                                     </div>
@@ -335,30 +335,30 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="email">Email Address</label>
-                                        <input type="email" id="email" class="form-control" value="" placeholder="hello@websitename.com" required="" data-error="Please enter your Email" />
+                                        <input type="email" name="email" id="email" class="form-control" value="" placeholder="Enter email address" required="" data-error="Please enter your Email" />
                                         <label for="email" class="for-icon"><i class="far fa-envelope"></i></label>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="name">Subject</label>
-                                        <input type="text" id="subject" class="form-control" value="" placeholder="Your Subject" required="" data-error="Please enter your Name" />
-                                        <label for="name" class="for-icon"><i class="far fa-user"></i></label>
+                                        <label for="subject">Subject</label>
+                                        <input type="text" name="subject" id="subject" class="form-control" value="" placeholder="Enter Subject" required="" data-error="Please enter your Subject" />
+                                        <label for="subject" class="for-icon"><i class="far fa-edit"></i></label>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="message">Your Message</label>
-                                        <textarea name="message" id="message" class="form-control" rows="4" placeholder="Write Your message" required="" data-error="Please Write your Message"></textarea>
+                                        <textarea name="message" id="message" class="form-control" rows="4" placeholder="Enter Message" required="" data-error="Please Write your Message"></textarea>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group mb-0">
                                         <button type="submit" class="theme-btn">
-                                            Send Me Message <i class="ri-mail-line"></i>
+                                            Send Message <i class="ri-mail-line"></i>
                                         </button>
                                         <div id="msgSubmit" class="hidden"></div>
                                     </div>
@@ -382,8 +382,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="footer-top">
-                        <p> Have a project in mind?</p>
-                        <h2><a href="mailto:hello@websitename.com">let's work</a></h2>
+                        <p>Have a project in mind?</p>
+                        <h2><a href="mailto:sunandt2003@gmail.com">let's work</a></h2>
                     </div>
                 </div>
             </div>
@@ -392,7 +392,7 @@
                     <p class="copy-left-text">Template by <a href="https://themeforest.net/user/creativepersonal/portfolio">Creative Personal®</a></p>
                 </div>
                 <div class="col-lg-6 col-sm-6">
-                    <p class="copy-right-text">&copy; Copyright 2024</p>
+                    <p class="copy-right-text">&copy; Copyright 2025</p>
                 </div>
             </div>
         </div>
@@ -425,7 +425,6 @@
     <!-- SCRIPT JS-->
     <script src="assets/js/script.js"></script>
 </body>
-
 
 <!-- Mirrored from theme.nanoit.biz/tf-nino-demo/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Aug 2025 05:41:09 GMT -->
 </html>
