@@ -837,9 +837,30 @@ html {
 }
 
 .logo img {
-    width: 150px;
-    
+    height: 72px;
+    width: auto;
+    display: block;
+    border-radius: 50%;
+    transition: all 500ms ease;
+}
 
+.logo:hover img {
+    box-shadow: 0 6px 22px rgba(0, 0, 0, .28);
+}
+
+.logo-text {
+    font-size: 30px;
+    font-weight: 700;
+    color: #000;
+    letter-spacing: .5px;
+    display: inline-block;
+    line-height: 72px;
+    transition: all 500ms ease;
+}
+
+.logo-text:hover {
+    color: #333;
+    opacity: .85;
 }
 
 .main-menu {
@@ -862,7 +883,7 @@ html {
 
 .main-menu ul li.has-dropdown>a:after {
     position: absolute;
-    content: "\f107";
+    /* content: "\f107"; */
     right: -4px;
     top: 10px;
     font-size: 16px;
